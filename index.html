@@ -21,16 +21,18 @@
             <button>Yellow</button>
             <button>Blue</button>
             <button>Random</button>
+            <button>Resize</button>
         </div>
     </main>
     
     <script>
+        let root=document.documentElement;
         let htmlStyles= window.getComputedStyle(document.querySelector('html'));
         let boxcolumn=parseInt(htmlStyles.getPropertyValue('--boxcolumn'));
         let buttons=Array.from(document.querySelector('.btn').children);
         container=document.createElement('div');
         container.setAttribute('class','container');
-        
+       
 
         main=document.querySelector('main');
 
@@ -40,7 +42,7 @@
                 box.setAttribute('style','margin:1px; background-color:white');
                 container.appendChild(box);
             }
-            
+
         };
         boxes(boxcolumn);
         
@@ -90,6 +92,14 @@
                     box.style.backgroundColor="#"+randomColor
                 })
             });
+        });
+
+        buttons[6].addEventListener('click',()=>{
+            boxnum=parseInt(prompt('Tell me the number of rows and columns you want: '));
+            container.innerHTML='';
+            root.style.setProperty('--boxcolumn',boxnum);
+            let boxcolumn=parseInt(htmlStyles.getPropertyValue('--boxcolumn'));
+            boxes(boxcolumn);
         });
         
         
