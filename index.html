@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Etch-a-Sketch</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="CSS/reset.css">
+    <link rel="stylesheet" type="text/css" href="CSS/style.css">
+</head>
+<body>
+    <header>
+       <div>
+           Etch-a-Sketch
+       </div>
+    </header>
+
+    <main>
+        <div class="btn">
+            <button>Reset</button>
+            <button>Gray</button>
+            <button>Red</button>
+            <button>Yellow</button>
+            <button>Blue</button>
+            <button>Random</button>
+        </div>
+    </main>
+    
+    <script>
+        let htmlStyles= window.getComputedStyle(document.querySelector('html'));
+        let boxcolumn=parseInt(htmlStyles.getPropertyValue('--boxcolumn'));
+        let buttons=Array.from(document.querySelector('.btn').children);
+        container=document.createElement('div');
+        container.setAttribute('class','container');
+        
+
+        main=document.querySelector('main');
+
+        function boxes(boxcolumn){
+            for (i=0; i<boxcolumn**2;i++){
+                box=document.createElement('div');
+                box.setAttribute('style','margin:1px; background-color:white');
+                container.appendChild(box);
+            }
+            
+        };
+        boxes(boxcolumn);
+        
+        
+        main.appendChild(container);
+        
+        let boxesc=document.querySelector('.container').children;
+        
+        buttons[0].addEventListener('click',()=>{
+            Array.from(boxesc).forEach(box=>{
+                box.style.backgroundColor='white';
+            });
+        });
+
+        buttons[1].addEventListener('click',()=>{
+            Array.from(boxesc).forEach(box=>{
+                box.addEventListener('mouseenter',()=>
+                box.style.backgroundColor='gray')
+            });
+        });
+
+        buttons[2].addEventListener('click',()=>{
+            Array.from(boxesc).forEach(box=>{
+                box.addEventListener('mouseenter',()=>
+                box.style.backgroundColor='red')
+            });
+        });
+
+        buttons[3].addEventListener('click',()=>{
+            Array.from(boxesc).forEach(box=>{
+                box.addEventListener('mouseenter',()=>
+                box.style.backgroundColor='yellow')
+            });
+        });
+
+        buttons[4].addEventListener('click',()=>{
+            Array.from(boxesc).forEach(box=>{
+                box.addEventListener('mouseenter',()=>
+                box.style.backgroundColor='blue')
+            });
+        });
+
+        buttons[5].addEventListener('click',()=>{
+            Array.from(boxesc).forEach(box=>{
+                box.addEventListener('mouseenter',()=>{
+                    const randomColor = Math.floor(Math.random()*16777215).toString(16);
+                    box.style.backgroundColor="#"+randomColor
+                })
+            });
+        });
+        
+        
+
+
+    </script>
+</body>
+</html>
